@@ -1,6 +1,6 @@
 📍[HTTP](#http)   
-📍[HTTP 요청](http-요청request)   
-📍[HTTP 응답](http-응답response)   
+📍[HTTP 요청](#http-요청request)   
+📍[HTTP 응답](#http-응답response)   
 📍[HTTP/1.1](#http11)  
 📍[HTTP 특징](#http의-특징)    
     - [🤔 상태유지와 무상태](#-상태유지와-무상태)   
