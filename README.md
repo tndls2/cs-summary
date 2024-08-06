@@ -13,3 +13,12 @@
   
   </div>
 </details>
+
+<details>
+<summary>8/6(화)</summary>
+  <div markdown="1">
+  
+  📒 [Git & Github](https://github.com/tndls2/estsoft_TIL/blob/main/Git/Git%20&%20Github.md)  
+
+  </div>
+</details>
