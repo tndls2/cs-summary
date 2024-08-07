@@ -5,11 +5,11 @@
 <summary>8/5(월)</summary>
   <div markdown="1">
   
-  📒 [네트워크 기초](https://github.com/tndls2/estsoft_TIL/blob/main/Network/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%20%EA%B8%B0%EC%B4%88.md)  
-  📒 [TCP](https://github.com/tndls2/estsoft_TIL/blob/main/Network/TCP.md)  
-  📒 [URI & 웹 브라우저 요청 흐름](https://github.com/tndls2/estsoft_TIL/blob/main/Network/URI%20%26%20%EC%9B%B9%20%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%20%EC%9A%94%EC%B2%AD%20%ED%9D%90%EB%A6%84.md)  
-  📒 [HTTP](https://github.com/tndls2/estsoft_TIL/blob/main/Network/HTTP.md)  
-  📒 [쿠키와 세션](https://github.com/tndls2/estsoft_TIL/blob/main/Network/%EC%BF%A0%ED%82%A4%EC%99%80%20%EC%84%B8%EC%85%98.md)  
+  📒 [네트워크 기초](https://github.com/tndls2/estsoft_TIL/blob/main/network/network_init.md)  
+  📒 [TCP](https://github.com/tndls2/estsoft_TIL/blob/main/network/tcp.md)  
+  📒 [URI & 웹 브라우저 요청 흐름](https://github.com/tndls2/estsoft_TIL/blob/main/network/uri.md)  
+  📒 [HTTP](https://github.com/tndls2/estsoft_TIL/blob/main/network/http.md)  
+  📒 [쿠키와 세션](https://github.com/tndls2/estsoft_TIL/blob/main/network/cookie_and_session.md)  
   
   </div>
 </details>
@@ -18,7 +18,17 @@
 <summary>8/6(화)</summary>
   <div markdown="1">
   
-  📒 [Git & Github](https://github.com/tndls2/estsoft_TIL/blob/main/Git/Git%20&%20Github.md)  
+  📒 [Git & Github](https://github.com/tndls2/estsoft_TIL/blob/main/git/git_and_github.md)  
 
+  </div>
+</details>
+
+<details>
+<summary>8/7(수)</summary>
+  <div markdown="1">
+  
+  📒 [HTML](https://github.com/tndls2/estsoft_TIL/blob/main/front_end/html.md)  
+  📒 [CSS](https://github.com/tndls2/estsoft_TIL/blob/main/front_end/css.md)  
+  
   </div>
 </details>
