@@ -2,6 +2,10 @@
 
 📍[CSS](#css)  
 📍[CSS 적용방식](#css-적용-방식)  
+📍[선택자](#선택자)  
+📍[단위](#단위)  
+📍[가상 클래스 & 가상 요소](#가상-클래스--가상-요소) 
+
 
 
 # 💄 CSS
@@ -108,4 +112,249 @@ p {
 - 단점: 
   - 외부 파일을 불러오기 때문에 로딩 속도가 약간 느려질 수 있음
   - CSS 파일이 많아질 경우 관리가 어려울 수 있음
+
+    
+### 선택자
+#### 1. 전체 선택자(`*`)
+HTML 문서 내의 모든 요소 선택  
+reset.css에서 많이 사용됨  
+> reset.css는 전체 선택자를 통해 브라우저마다 다르게 기본 설정된 스타일 초기화 -> 일관된 디자인 
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+}
+```
+💡 큰 프로젝트에서는 <u>특정 요소에만 스타일을 적용</u>하는 것이 성능상 효율적임
+
+#### 2. 타입 선택자 (`tag`)
+특정 HTML 태그를 선택  
+특정 태그 <u>전체</u>에 스타일을 적용
+```css
+h1 {
+  color: blue;
+}
+p {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+```
+
+#### 3. 아이디 선택자 (`#`)
+특정 요소 선택  + 한 번만 사용 가능
+```html
+<header id="header">hello</header>
+```
+```css
+#header {
+  color: blue;
+}
+````
+
+> `id` : HTML 문서 내에서 **한 번만 사용** 될 수 있는 고유한 식별자   
+JavaScript와 함께 동적인 웹 페이지를 만들 때 사용  
+해시 링크와 결합하여 `특정 위치로 바로 이동`할 수 있게 해줌  
+ex) `#`: 프래그먼트 식별자(Fragment Identifier)
+     ```   https://docs.python.org/3/tutorial/controlflow.html#defining-functions
+    ```  
+id="defining-functions"를 가진 요소로 스크롤  
+  
+#### 4. 클래스 선택자 (`.`)
+특정 요소 선택 + 여러 번 사용 가능
+ ```html
+<h1 class="fc-red">hello wolrd</h1>
+```
+```css
+.fc-red {
+  color: red;
+}
+```
+
+> 하나의 요소에 여러 개의 클래스 적용 가능!   
+    ```
+    <p class="text-large text-bold fc-red">Styled text</p>
+    ```
+
+#### 5. 특성 선택자 (`[]`)
+특정 속성을 가진 요소 선택  
+-> 속성 기준으로 스타일 지정
+```html
+<button type="button" class="btn">button</button>
+<button type="submit" class="btn">submit</button>
+
+```
+```css
+[type='button'] {
+  border: 0;
+  cursor: pointer;
+}
+```
+
+#### 6. 그룹 선택자 (`,`)
+여러 개의 선택자 선택 -> 중복 감소
+```css
+h1,
+h2,
+h3 {
+  color: blue;
+}
+```
+
+#### 7. 복합 선택자
+<예시용 html 일부>
+```html
+<!-- ... -->
+<section>
+  <div>
+    <p>lorem ipsum dolor sit amet</p>
+  </div>
+  <p>lorem ipsum dolor sit amet</p>
+  <p>lorem ipsum dolor sit amet</p>
+</section>
+<p>lorem ipsum dolor sit amet</p>
+<p>lorem ipsum dolor sit amet</p>
+<p>lorem ipsum dolor sit amet</p>
+```
+  ![복합 선택자](https://www.books.weniv.co.kr/images/basecamp-html-css/chapter03/03-1.png)   
+
+#### 7-(1) 자손 선택자 (` `)
+특정 요소의 `모든 하위 요소` 선택
+```css
+section p {
+  font-weight: bold;
+}
+```
+![자손 선택자](https://www.books.weniv.co.kr/images/basecamp-html-css/chapter03/03-2.png)  
+
+#### 9. 자식 선택자 (`>`)
+특정 요소의 직계 자식 요소만 선택  
+
+```css
+section > p {
+  color: royalblue;
+}
+```
+![자식 선택자](https://www.books.weniv.co.kr/images/basecamp-html-css/chapter03/03-3.png)  
+
+#### 10. 일반 형제 선택자 (`~`)
+`뒤에 나오는 형제만` 선택  
+```css
+section ~ p {
+  text-decoration: underline;
+}
+```
+![일반 형제 선택자](https://www.books.weniv.co.kr/images/basecamp-html-css/chapter03/03-4.png)   
+
+#### 11. 인접 형제 선택자 (`+`)
+ `바로 뒤에 인접한 형제만` 선택
+```css
+section + p {
+  background: yellow;
+}
+```
+![인접 형제 선택자](https://www.books.weniv.co.kr/images/basecamp-html-css/chapter03/03-5.png)  
+
+### 단위 
+#### 절대 길이 단위 
+디바이스별로 다른 위치, 크기로 보이는 문제가 발생 🚨
+- `px` (cm, mm, in, pc, pt ….)   
+
+#### 상대 길이 단위 
+- `%` : 부모 요소의 크기 기준
+   ```css 
+  .parent {
+    width: 300px;
+    background-color: #e0e0e0;
+    padding: 10px;
+  }
+   .child {
+    width: 50%; /*부모의 50% 너비*/
+    background-color: #b0b0b0;
+    padding: 10px;
+  }
+  ```
+- `vm`, `vh`: 뷰포트(브라우저 창의 크기) 기준
+  ```css
+  .viewport-box {
+    width: 50vw; /*뷰포트의 50% 너비*/
+    height: 30vh; /*뷰포트의  30% 높이*/
+    background-color: #d0d0d0;
+    border: 1px solid #000;
+    padding: 10px;
+  }
+  ```
+
+- `em` : 부모 요소로부터 상속받은 요소의 글자 크기를 기준으로 하는 배수 단위
+- `rem` : root em, 최상위 요소(`<html>`)의 글자 크기를 기준으로 하는 배수 단위
+  ```css
+  html {
+    font-size: 16px;
+  }
+  .parent {
+    font-size: 20px;
+  }
+  .em-child {
+    font-size: 1.5em; /*부모의 20px * 1.5 = 30px*/
+  }
+  .rem-child {
+    font-size: 1.5rem; /*루트의 16px * 1.5 = 24px*/
+  }
+  ```
+
+
+### 가상 클래스 & 가상 요소
+#### 1. 가상 클래스 선택자(Pseudo-class selectors)
+요소의 특정 상태 선택 가능  
+`:` 사용하여 표현
+
+- 동적 가상 클래스 : `사용자의 동작`에 따라 변화하는 상태 선택
+  ```css
+  .hover-button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    transition: background-color 0.3s;
+  }   
+  .hover-button:hover { /*마우스  포인터가 요소 위에 올라간 경우*/
+    background-color: #2980b9; /*배경색 변경*/
+  }
+  ```
+
+- 구조적 가상 클래스 : 문서 구조 내에서 `요소의 위치`에 따라 선택
+  ```css
+  li:first-child { /*형제 요소 그룹 중 첫 번째 요소*/
+    color: #e74c3c;
+  }
+   
+  li:last-child { /*형제 요소 그룹 중 마지막 요소*/
+    color: #2ecc71;
+  }
+  li:nth-child(even) { /*짝수 번째 항목 선택*/
+    background-color: #f1f1f1;
+  }
+  ```
+
+#### 2. 가상 요소(Pseudo-elements)
+가상의 요소를 만드는 것  
+선택한 요소의 특정 부분에 스타일 적용  
+`::` 사용하여 표현
+```css
+.quote::before {
+  content: "💙"; /*해당 요소의 앞에 내용 추가*/
+  color: #3498db;
+  font-size: 1.2em;
+  margin-right: 5px;
+}
+ 
+.quote::after {
+  content: "🦊"; /*해당 요소의 뒤에 내용 추가*/
+  color: #3498db;
+  font-size: 1.2em;
+  margin-left: 5px;
+}
+```
+
 
