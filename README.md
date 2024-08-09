@@ -32,3 +32,24 @@
   
   </div>
 </details>
+
+</details>
+
+<details>
+<summary>8/8(목)</summary>
+  <div markdown="1">
+  
+  📒 [CSS](https://github.com/tndls2/estsoft_TIL/blob/main/front_end/css.md)  
+  🖊 []
+  
+  </div>
+</details>
+
+</details>
+
+<details>
+<summary>8/9(금)</summary>
+  <div markdown="1">
+  
+  </div>
+</details>
