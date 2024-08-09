@@ -51,5 +51,7 @@
 <summary>8/9(금)</summary>
   <div markdown="1">
   
+  📒 [CSS part.2](https://github.com/tndls2/estsoft_TIL/blob/main/front_end/css_part2.md)  
+
   </div>
 </details>
