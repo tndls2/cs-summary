@@ -68,11 +68,17 @@
 <details>
 <summary>8/13(화)</summary>
   <div markdown="1">
+    
+  📒 [javascript part.2](https://github.com/tndls2/estsoft_TIL/blob/main/front_end/javascript_part2.md) 
+  
   </div>
 </details>
 
 <details>
 <summary>8/14(수)</summary>
   <div markdown="1">
+    
+  📒 [javascript part.2](https://github.com/tndls2/estsoft_TIL/blob/main/front_end/javascript_part2.md#%EB%B9%84%EB%8F%99%EA%B8%B0-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%EA%B3%BC-promise)  
+  
   </div>
 </details>
