@@ -1,5 +1,6 @@
 📍[JSON](#jsonjavascript-object-notation)  
 📍[DOM](#domdocument-object-model)  
+📍[비동기 프로그래밍과 Promise](#비동기-프로그래밍과-promise)  
 
 ### JSON(JavaScript Object Notation)
 - `데이터 저장/전송`을 위한 간단하고 가벼운 텍스트 기반 데이터 형식  
@@ -404,3 +405,165 @@ JSON은 `프로그래밍 언어 간의 데이터 교환`을 간편하게 하기 
     ```
     - 기본 동작: 폼의 submit 버튼을 클릭하면, 브라우저는 폼 데이터를 /submit URL로 POST 방식으로 전송하고 페이지를 새로 고침함
     - preventDefault() 사용 : 폼이 실제로 서버로 제출되지 않고, 페이지도 새로고침되지 않음 & `console.log('폼 제출이 중지되었습니다.')`만 실행됨
+
+
+### 비동기 프로그래밍과 Promise
+#### 1. 동기/비동기
+
+|           | **동기 프로그래밍**                                     | **비동기 프로그래밍**                                     |
+|-------------------------|-------------------------------------------------------|----------------------------------------------------------|
+| **처리 방식**            | 작업이 **순차적**으로 실행 = 한 작업이 완료되기 전까지 다음 작업이 시작되지 않음 | 여러 작업이 **병렬적**으로 실행 = 한 작업이 완료되기 전에 다른 작업이 시작될 수 있음 |
+| **대기 시간**       | 앞의 작업이 완료될 때까지 다음 작업은 대기             | 다른 작업이 비동기적으로 처리되며, 대기 시간 동안 다른 작업을 수행할 수 있음 |
+| **프로그램 복잡도**      | 일반적으로 코드가 직관적이고 이해하기 쉬움             | **콜백**, **프로미스** 또는 `async/await`를 사용하여 복잡성이 증가할 수 있음 |
+| **응답 시간**            | 모든 작업이 순서대로 실행되기 때문에 응답 시간이 길어질 수 있음 | 여러 작업을 동시에 처리할 수 있어 응답 시간이 단축될 수 있음 |
+| **리소스 사용**          | 리소스가 비효율적으로 사용될 수 있음                  | 리소스를 효율적으로 사용할 수 있음 (ex. I/O 작업 동안 CPU가 유휴 상태일 필요 없음) |
+| **예시**                 | 파일 읽기, 데이터베이스 조회 후 결과 반환.              | 네트워크 요청, 파일 다운로드, 이벤트 기반 작업.           |
+| **장점**                 | 코드가 단순하고 유지보수가 쉬움.                       | 성능 최적화, 높은 응답 속도, 리소스 효율적 사용 가능.     |
+| **단점**                 | I/O 작업에 시간이 많이 걸릴 수 있음.                    | 코드 복잡도가 증가하고 디버깅이 어려울 수 있음.           |
+
+#### 2. Promise
+js에서 `비동기 작업`을 관리하고 처리하기 위해 사용되는 객체  
+성공 or 실패에 따라 실행할 함수(`콜백함수`)를 약속함  
+- **Promise 상태**   
+  - Pending (대기): 초기 상태로, 비동기 작업이 아직 완료되지 않은 상태  
+  - Fulfilled (이행): 비동기 작업이 성공적으로 `완료`되어 결과값이 반환된 상태  
+  - Rejected (거부): 비동기 작업이 실패하여 `오류`가 발생한 상태  
+    `💡 pending(대기상태) -> resolve(해결) -> fulfilled(성공)`  
+    `🚨 pending(대기상태) -> reject(거부) -> rejected(실패)`  
+
+- **Promise와 사용되는 메소드**
+
+  ```javascript
+  let promise = new Promise((resolve, reject) => {
+      // 비동기 작업 수행
+      let success = true;
+      if (success) {
+          resolve("작업이 성공했습니다!");
+      } else {
+          reject("작업이 실패했습니다.");
+      }
+  });
+  ```
+
+  - `then()` : 비동기 작업이 성공적으로 완료되었을 때, 실행될 콜백 함수 지정  
+
+    ```javascript
+    promise.then(result => {
+        console.log(result); // "작업이 성공했습니다!" 출력
+    });
+    ```  
+  - `catch()` : 비동기 작업이 실패했을 때, 실행될 콜백 함수 지정
+
+    ```javascript
+    promise.catch(error => {
+        console.log(error); // "작업이 실패했습니다." 출력
+    });
+    ``` 
+  - `finally()` : 작업의 성공 여부와 상관없이, 항상 실행되는 콜백 함수 지정
+
+    ```javascript
+    promise.finally(() => {
+        console.log("작업이 끝났습니다."); 
+    });
+    ``` 
+
+- **Promise 장점**
+  - 가독성 향상: `콜백 지옥(callback hell)`을 피하고, 코드의 가독성 높임
+  - 체인 가능: `then`, `catch` 메서드를 체인으로 연결 -> 연속적인 비동기 작업을 간단하게 처리 가능
+  - 에러 처리: 비동기 작업에서 발생하는 오류를 간단하게 처리 가능
+
+
+#### 3. fetch와 async/await
+js에서 비동기적으로 데이터를 가져오거나 서버와 통신하는 데 사용됨  
+- `fetch` : 웹 브라우저에서 네트워크 요청을 수행하기 위해 사용되는 함수
+  - 주로 HTTP 요청을 보냄 + 서버로부터의 응답을 받아 처리하는 데 사용
+  - `Promise`를 반환함 = `then`이나 `await`로 응답을 처리할 수 있음
+    
+  ```javascript
+  fetch('https://jsonplaceholder.typicode.com/posts/1')
+    .then(response => response.json()) // 응답을 JSON으로 변환
+    .then(data => console.log(data))   // 변환된 데이터를 콘솔에 출력
+    .catch(error => console.error('Error:', error)); // 에러 처리
+  ```
+
+- `async/await`
+  - async 함수 : 항상 Promise를 반환
+  - await 키워드 : 해당 Promise가 처리될 때까지 기다리게 만듬   
+    ➡️  비동기 코드가 <u>동기 코드</u>처럼 직관적으로 작동하게 됨
+    
+  ```javascript
+  async function fetchData() {
+      try {
+          const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+          const data = await response.json(); // 응답을 JSON으로 변환
+          console.log(data); // 변환된 데이터를 콘솔에 출력
+      } catch (error) {
+          console.error('Error:', error); // 에러 처리
+      }
+  }
+  
+  fetchData();
+  
+  ```
+
+> **콜백 지옥(callback hell)**  
+>  - js 에서 비동기 작업을 처리할 때, 중첩된 콜백 함수들로 인해 코드의 가독성이 떨어지고 유지보수가 어려워지는 현상  
+> - 여러 개의 비동기 작업이 순차적으로 실행될 때 발생 🚨
+> - 콜백 함수가 계속 중첩되어 코드를 오른쪽으로 깊게 밀어내기 때문에 코드가 피라미드 모양을 이룸
+> ```javascript
+> function firstTask(callback) {
+>   setTimeout(() => {
+>     console.log('첫 번째 작업 완료');
+>     callback();
+>   }, 1000);
+> }
+>     
+> function secondTask(callback) {
+>   setTimeout(() => {
+>     console.log('두 번째 작업 완료');
+>     callback();
+>   }, 1000);
+> }
+>     
+> function thirdTask(callback) {
+>   setTimeout(() => {
+>     console.log('세 번째 작업 완료');
+>     callback();
+>   }, 1000);
+> }
+>     
+> firstTask(() => {
+>   secondTask(() => {
+>     thirdTask(() => {
+>         console.log('모든 작업 완료');  // 중첩이 늘어남
+>     });
+>   });
+> });
+> ```
+>   **💡 콜백 지옥 해결방법**  
+>   1. `Promise` 사용
+>   ```javascript
+>   firstTask()
+>     .then(secondTask)
+>     .then(thirdTask)
+>     .then(() => {
+>       console.log('모든 작업 완료');
+>     })
+>     .catch(error => {
+>       console.error(error);
+>     });
+>    ```
+>   
+>   2. `async/await` 사용      
+>   ```javascript
+>   async function runTasks() {
+>     await firstTask();
+>     await secondTask();
+>     await thirdTask();
+>     console.log('모든 작업 완료');
+>   }
+>       
+>   runTasks().catch(error => {
+>     console.error(error);
+>   });
+>     ```
